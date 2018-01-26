@@ -1,0 +1,60 @@
+{
+  "name": "choux",
+  "version": "0.0.1",
+  "description": "Thin dom manipulation wrapper for modern browsers",
+  "author": "gairal",
+  "readmeFilename": "README.md",
+  "main": "dist/js/choux.js",
+  "keywords": [
+    "jQuery",
+    "dom",
+    "event",
+    "JavaScript",
+    "es7",
+    "es2017"
+  ],
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build",
+    "release": "gulp release",
+    "lint": "gulp lint",
+    "test": "gulp lint",
+    "precommit": "npm-run-all release lint stage",
+    "stage": "git add .",
+    "commitmsg": "validate-commit-msg"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "~6.22.0",
+    "babel-plugin-transform-imports": "^1.4.1",
+    "babel-preset-env": "^1.6.1",
+    "browser-sync": "^2.23.5",
+    "del": "^3.0.0",
+    "eslint": "^4.15.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-react": "^7.5.1",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^4.0.1",
+    "gulp-pug": "^3.3.0",
+    "gulp-pug-lint": "^0.1.6",
+    "gulp-rename": "~1.2.2",
+    "gulp-sourcemaps": "^2.6.3",
+    "husky": "^0.14.3",
+    "npm-run-all": "~4.1.2",
+    "pug": "^2.0.0-rc.4",
+    "require-dir": "^0.3.2",
+    "run-sequence": "^2.2.1",
+    "rollup": "^0.54.1",
+    "rollup-plugin-node-resolve": "^3.0.2",
+    "rollup-plugin-eslint": "^4.0.0",
+    "rollup-plugin-uglify": "^2.0.1",
+    "rollup-plugin-babel": "^3.0.3",
+    "validate-commit-msg": "^2.12.1"
+  },
+  "dependencies": {
+    "es6-promise": "~4.2.4",
+    "whatwg-fetch": "~2.0.3"
+  }
+}

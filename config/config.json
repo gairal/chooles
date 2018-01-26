@@ -1,0 +1,22 @@
+{
+  "base": {
+    "src": "src/",
+    "build": "build/",
+    "demo": "demo/",
+    "dist": "dist/",
+    "test": "test/"
+  },
+  "path": {
+    "css": "css/",
+    "js": "app/",
+    "demo": "demo/"
+  },
+  "files": {
+    "index": "index.html",
+    "html": "**/*.html",
+    "pug": "**/*.pug",
+    "pugindex": "index.pug",
+    "css": "**/*.css",
+    "js": "**/*.js"
+  }
+}
