@@ -1,189 +1,167 @@
-# Choux
+# Chooles
 
----
+Collection of everyday tools that are too small to belong to a dedicated lib
 
-### TODO
-- [ ] Unit Testing
-- [ ] Update README
+> Developped with [Babel](https://babeljs.io), [webpack](http://webpack.github.io), [Jest](https://facebook.github.io/jest/) and :heart:
 
----
+## Usage
+Here is the simplest way to init and use the tools.
+You can find more examples in the `examples/` directory of this repo.
 
-> Thin dom manipulation wrapper using modern browser capabilities including popular polyfill
-
-## Quick start
-### Pre-requirements
-* Node version >= 6
-* Npm or yarn
-
-```bash
-# clone the repo
-git clone git@github.com:gairal/choux.git
-
-# change directory to the repo
-cd choux
-
-# install the repo with npm or yarn
-npm install
-OR
-yarn install
-
-# start the server
-gulp
+``` js
+import Chooles from 'chooles';
+Chooles.ready(() => { console.log('ready'); });
 ```
-go to [http://localhost:3000](http://localhost:3000) in your browser
 
 ---
 
 # Table of Contents
-* [File structure](#file-structure)
-* [Compatibility](#compatibility)
-* [Getting Started](#getting-started)
-    * [Dependencies](#dependencies)
-    * [Installing](#installing)
-    * [Running the app](#running-the-app)
-* [Configuration](#configuration)
+* [Installation](#installation)
+* [Methods](#methods)
+* [Contribute](#contribute)
+    * [File structure](#file-structure)
+    * [Getting Started](#getting-started)
+        * [Dependencies](#dependencies)
+        * [Installing](#installing)
+        * [Running the app](#running-the-app)
 * [License](#license)
 
-# File structure
+## Installation
 ```
-gulp-webpack-es2015-stack/
- ├──config/                          * configuration files and Gulp taks
- │   ├──gulp/                        * Gulp tasks descriptions
- │   ├──.htmlhintrc                  * htmlhint configuration file
- │   ├──.eslintrc.json               * eslint configuration file
- │   ├──.sass-lint.yml               * sasslint configuration file (Yaml format)
- │   ├──config.json                  * variables used got Gulp tasks
- │   ├──karma.conf.js                * Karma configuration file
- │   └──webpack.conf.js              * Webpack configuration file
- │
+npm install chooles
+```
+```
+yarn add chooles
+```
+
+## Methods
+### dom
+#### Ready
+This methods allows to execute a function after a specific ready state, or execute it right away if the state is already passed.
+Params:
+* function: the function to execute the page has loaded
+* readyState(string)(default 'loading'): the ready state after which the method must be executed
+
+```
+const meth = () => alert('ready');
+
+Chooles.ready(meth);
+Chooles.dom.ready(meth);
+Chooles.ready(meth, Chooles.dom.readyStates.complete);
+```
+
+#### injectScript
+Injects a script at the end of the head of the page.
+Chech first if a script with provided exist already.
+Params:
+* src(string): Script source url
+* id(string): script id
+
+```
+Chooles.injectScript('https://cdnjs.cloudflare.com/ajax/libs/impress.js/0.5.3/impress.js', 'id');
+Chooles.dom.injectScript('https://cdnjs.cloudflare.com/ajax/libs/impress.js/0.5.3/impress.js', 'id');
+```
+
+#### closest
+Gets the closest parent of an element identified by a selector
+Params:
+* $el(string|domNode): either a domNode or a querySelector
+* selector(string): querySelector of the element parent
+```
+Chooles.closest('.foo', '.bar');
+Chooles.dom.closest(document.querySelector('.foo'), '.bar');
+```
+
+### forms
+Methods to manipulate forms
+
+#### serializeFormToJson
+Gets a domNode, find all form controls in it then transform their values to a js object.
+Params:
+* $form(domNode): a domNode containing form controls
+```
+const json = Chooles.form.serializeFormToJson(document.querySelector('.foo'));
+```
+#### jsonToFormData
+Gets a json representation of a form and serialize it to FormData.
+Params:
+* json(object): object from serializeFormToJson()
+```
+const formData = Chooles.form.jsonToFormData({
+    foo: 'bar',
+});
+```
+#### serializeForm
+Receives a domNode and generate FormData from its form controls (serializeFormToJson + serializeForm).
+Params:
+* $form(domNode): a domNode containing form controls
+```
+const formData = Chooles.form.serializeForm(document.querySelector('.foo'));
+```
+
+## Contribute
+### File structure
+```
+chooles/
  ├──src/                             * our source files that will be compiled to javascript
- │   ├──index.pug                    * our index.html
+ |   ├──app/                         * Lib sources
  │   │
- │   ├──html/                        * where you keep your pug templates
- │   │   └──layout.pug               * the main pug layout
- │   │
- │   ├──app/                         * JavaScript/ES2015 files
- │   │
- │   ├──static/                      * files that will be copied to the root of the compiled site (robots.txt, favicon, ...)
- │   │
- │   └──assets/                      * static assets are served here
- │       ├──img/                     * images
- │       └──scss/                    * Sass files
- │           ├──app.scss             * Main Sass files
- │           └──common/              * Sass common files
- │               ├──_bootstrap.scss  * Bootstrap Sass module import file
- │               ├──_mixins.scss     * for you own Sass mixins here
- │               └──_variables.scss  * for your sass variables
+ |   └──examples/                    * examples sources
+ │       ├──index.pug                * our index.html
+ │       │
+ │       ├──html/                    * where you keep your pug templates
+ │       │   └──layout.pug           * the main pug layout
+ │       │
+ │       └──app/                     * JavaScript/ES2015 files
  │
- ├──test/                            * Testing directory
- │    └──spec/                       * Jasmine test definitions
+ ├──test/                            * Jest test definitions
  │
+ ├──webpack/                         * Webpack configuration files
+ │   ├──webpack.config.base.js       * Base config
+ │   ├──webpack.config.js            * Development overrides
+ │   └──webpack.config.prod.js       * Production overrides
  │
- ├──gulpfile.js                      * gulp main configuration file
- └──package.json                     * what npm/yarn uses to manage it's dependencies
+ └──package.json                     * package.json
 ```
-# Getting Started
-## Dependencies
+### Getting Started
+#### Dependencies
 You need to install the following on you system
-* `node` and `npm` (`brew install node`) or `yarn` (`brew install yarn`)
-* Ensure you running Node version >= 4.0.0
-* ruby (`brew install ruby`)
+* `node` and `npm`
+* Ensure you running Node version >= 8.0.0
 
-Then install tools you'll need to run the app
-* sass (`gem install sass`)
-* gulp (`npm install gulp -g`)
-* karma (`npm install karma-cli -g`)
-
-## Installing
-* `fork` this repo
+#### Installing
+* `fork` the github repo [https://github.com/gairal/chooles](https://github.com/gairal/chooles)
 * `clone` your fork
 * `npm install` to install all dependencies
-* `gulp` to start the dev server
+* `make start` or `npm start` to start the dev server
 
-## Running the app
-After all dependencies are installed, just run `gulp` to start a local server using `browser-sync` which will watch your files and build them.
-browser-sync will display the address and port of your server (by default, `http://0.0.0.0:3000`).
+#### Running the app
+After all dependencies are installed, just run `make start` to start a local server using `webpack-dev-server` which will watch your files and build them.
+webpack-dev-server will display the address and port of your server (by default, `http://0.0.0.0:3000`).
 
-### Gulp commands
+### Build commands
 #### Server
 ```bash
 # build files then launch the server and watch files
-gulp
-# compiled version
-gulp run:dist
+make start
 ```
 #### Build files
 ```bash
-# build files in ./build/ (Webpack, Sass, Jade) and validate them
-gulp build
-# "compile" files in ./compile/
-# minify and concatenate every css and js including
-# Optimize images compression
-# Site ready for production
-gulp compile
+# build files in ./build/ (Webpack, Sass, Pug) and validate them
+make build
+# "compile" files in ./dist/
+# minify and concatenate assets
+make release
 ```
 #### Validate files
 ```bash
-# runs the validations htmlhint, eslint, csslint, sasslint, TsLint
-gulp validate
-```
-#### Package site
-```bash
-# compile files then get the last git tag and create a zip named after it
-gulp delivery
-```
-#### Deploy site
-```bash
-# compile the site then send it to a given server path over scp
-gulp deploy
+# runs the validations eslint and jest tests
+make test
 ```
 
-# Compatibility
-* Chrome >=
-* FF >=
-* IE >= 11
-
-# Configuration
-Most of the configuration files are in ./config
-* `config.json`: contains the paths to the various kind of files used by Gulp
-* `.eslintrc.json`: eslint config file
-* `.sass-lint.yml`: sasslint config file
-* `webpack.conf.json`: Webpack config file
-
-# License
+## License
 [MIT](/LICENSE.md)
 
-#doc
-## Ajax
-Use standard [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
-This lib adds the [whatwg-fetch](https://www.npmjs.com/package/whatwg-fetch) polyfill
+#### Author: [Frank Gairal]
 
-## Promise
-Use standard [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)
-This lib adds the [es6-promise](https://www.npmjs.com/package/es6-promise) polyfill
-
-## Events
-### On
-### Off
-
-## Elements / DOM
-### AddClass
-### RemoveClass
-### Remove class
-### Append
-### Prepend
-### Children
-### find
-### Each
-### Filter
-### Attributes
-### data
-### html
-### OuterHTML
-### Text
-### Hasclass
-### Parent
-### Remove
-### Css
-### siblings
-### toggleClass
+[Frank Gairal]: http://github.com/gairal

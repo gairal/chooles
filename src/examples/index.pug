@@ -1,0 +1,45 @@
+extends html/layout.pug
+
+block content
+  h2 Dom
+  h3 Ready
+  code.
+    Chooles.ready(() => alert('ready'));
+  button.mt-4.js-test__ready test
+  h3 injectScript
+  code.
+    Chooles.injectScript('https://cdnjs.cloudflare.com/ajax/libs/impress.js/0.5.3/impress.js', 'id');
+  h3 closest
+  code.
+    &lt;div class="foo"&gt;
+      <br/>
+      &nbsp;&lt;div class="bar"&gt;&lt;/div&gt;
+      <br/>
+    &lt;/div&gt;
+    <br/>
+    Chooles.closest(document.querySelector('.bar'), '.foo');
+  .foo.border-blue.p-4 div .foo
+    .bar.border-pink.p-4 div .bar
+      button.mt-4.js-test__closest Click to select closest .foo
+
+  h2 Form
+  form.form-test
+    input(type='text', name='input', value='foo')
+    select(name='select')
+      option(value="bar1") bar1
+      option(value="bar2") bar2
+  h3 serializeFormToJson
+  code.
+    const json = Chooles.form.serializeFormToJson(document.querySelector('.form-test'));
+  button.mt-4.js-test__tojson click to serialize to json
+  .result--tojson.border-blue.p-4
+  h3 jsonToFormData
+  code.
+    const json = Chooles.from.jsonToFormData('{ "input": "foo", "select": "bar1" }');
+  button.mt-4.js-test__tofd click to serialize to FormData
+  .result--tofd.border-blue.p-4
+  h3 serializeForm
+  code.
+    const json = Chooles.from.serializeForm(this.$form);
+  button.mt-4.js-test__fromftofd click to serialize to FormData
+  .result--fromftofd.border-blue.p-4

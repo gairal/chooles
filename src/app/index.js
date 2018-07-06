@@ -1,3 +1,3 @@
-import App from './App';
+import Chooles from './Chooles';
 
-export default App;
+export default Chooles;
