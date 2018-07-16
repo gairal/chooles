@@ -18,8 +18,8 @@ describe('Storage', () => {
 
   it('Sets key value', () => {
     storage.value = 1;
-    expect(storage.value).toEqual('1');
-    expect(localStorage.setItem).toHaveBeenLastCalledWith(storage.key, 1);
+    expect(storage.value).toEqual(1);
+    expect(localStorage.setItem).toHaveBeenLastCalledWith(storage.key, '1');
   });
 
   it('Remove key value', () => {

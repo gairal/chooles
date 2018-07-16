@@ -19,11 +19,13 @@ export default class Storage {
   }
 
   get value() {
-    return this.hasLocalStorage ? localStorage.getItem(this.key) : null;
+    const val = this.hasLocalStorage ? localStorage.getItem(this.key) : null;
+    if (!val) return val;
+    return JSON.parse(val);
   }
 
   set value(val) {
-    if (this.hasLocalStorage) localStorage.setItem(this.key, val);
+    if (this.hasLocalStorage) localStorage.setItem(this.key, JSON.stringify(val));
   }
 
   /**

@@ -1,6 +1,6 @@
 {
   "name": "chooles",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Collection of everyday tools that are too small to belong to a dedicated lib",
   "author": "Frank Gairal <frank@gairal.com> (https://frank.gairal.com/)",
   "readmeFilename": "README.md",
