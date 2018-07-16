@@ -1,4 +1,4 @@
-import Storage from '@/Storage';
+import Storage from '@/storage';
 
 describe('Storage', () => {
   const storage = new Storage();
@@ -17,9 +17,9 @@ describe('Storage', () => {
   });
 
   it('Sets key value', () => {
-    storage.value = {};
-    expect(storage.value).toEqual({});
-    expect(localStorage.setItem).toHaveBeenLastCalledWith(storage.key, {});
+    storage.value = 1;
+    expect(storage.value).toEqual('1');
+    expect(localStorage.setItem).toHaveBeenLastCalledWith(storage.key, 1);
   });
 
   it('Remove key value', () => {
