@@ -99,6 +99,22 @@ Params:
 const formData = Chooles.form.serializeForm(document.querySelector('.foo'));
 ```
 
+### Abstract Component
+Abstract class for JS components
+
+```
+import { AbstractComponent } from 'chooles';
+export default class MyComponent extends AbstractComponent {
+    constructor(globals) {
+        super(globals, { selector: '.js-header' });
+    }
+
+    if (this.exists) {
+        ...
+    }
+}
+```
+
 ## Contribute
 ### File structure
 ```

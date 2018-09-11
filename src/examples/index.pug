@@ -43,3 +43,32 @@ block content
     const json = Chooles.from.serializeForm(this.$form);
   button.mt-4.js-test__fromftofd click to serialize to FormData
   .result--fromftofd.border-blue.p-4
+
+  h2 AbstractComponent
+  h3 Simple example
+  code.
+    import Chooles from '@/Chooles';
+    <br/>
+    <br/>
+    export default class Component extends Chooles.AbstractComponent {
+    <br/>
+      &nbsp;constructor(globals) {
+    <br/>
+        &nbsp;&nbsp;super(globals, { selector: 'js-component' });
+    <br/>
+      &nbsp;}
+    <br/>
+    <br/>
+      &nbsp;onInit() {
+    <br/>
+        &nbsp;&nbsp;this.$component.addEventListener('click', () => {
+    <br/>
+          &nbsp;&nbsp;&nbsp;alert('I\'m a component'); // eslint-disable-line no-alert
+    <br/>
+        &nbsp;&nbsp;});
+    <br/>
+      &nbsp;}
+    <br/>
+    }
+  button.mt-4.js-component click to alert
+

@@ -1,5 +1,6 @@
 import Chooles from '@/Chooles';
 import Butt from './Butt';
+import Component from './Component';
 
 export default class Examples {
   constructor() {
@@ -39,6 +40,8 @@ export default class Examples {
       const fd = Chooles.form.serializeForm(this.$form);
       document.querySelector('.result--fromftofd').innerHTML = fd.toString();
     });
+
+    Component.factory({});
   }
 
   static factory() {

@@ -47,7 +47,29 @@ main button {
   <br/>
 &lt;/div&gt;
 <br/>
-Chooles.closest(document.querySelector('.bar'), '.foo');</code><div class="foo border-blue p-4">div .foo<div class="bar border-pink p-4">div .bar<button class="mt-4 js-test__closest">Click to select closest .foo</button></div></div><h2>Form</h2><form class="form-test"><input type="text" name="input" value="foo"><select name="select"><option value="bar1">bar1</option><option value="bar2">bar2</option></select></form><h3>serializeFormToJson</h3><code>const json = Chooles.form.serializeFormToJson(document.querySelector('.form-test'));</code><button class="mt-4 js-test__tojson">click to serialize to json</button><div class="result--tojson border-blue p-4"></div><h3>jsonToFormData</h3><code>const json = Chooles.from.jsonToFormData('{ "input": "foo", "select": "bar1" }');</code><button class="mt-4 js-test__tofd">click to serialize to FormData</button><div class="result--tofd border-blue p-4"></div><h3>serializeForm</h3><code>const json = Chooles.from.serializeForm(this.$form);</code><button class="mt-4 js-test__fromftofd">click to serialize to FormData</button><div class="result--fromftofd border-blue p-4"></div></main><!-- Google Analytics: change UA-XXXXX-X to be your site ID. --><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+Chooles.closest(document.querySelector('.bar'), '.foo');</code><div class="foo border-blue p-4">div .foo<div class="bar border-pink p-4">div .bar<button class="mt-4 js-test__closest">Click to select closest .foo</button></div></div><h2>Form</h2><form class="form-test"><input type="text" name="input" value="foo"><select name="select"><option value="bar1">bar1</option><option value="bar2">bar2</option></select></form><h3>serializeFormToJson</h3><code>const json = Chooles.form.serializeFormToJson(document.querySelector('.form-test'));</code><button class="mt-4 js-test__tojson">click to serialize to json</button><div class="result--tojson border-blue p-4"></div><h3>jsonToFormData</h3><code>const json = Chooles.from.jsonToFormData('{ "input": "foo", "select": "bar1" }');</code><button class="mt-4 js-test__tofd">click to serialize to FormData</button><div class="result--tofd border-blue p-4"></div><h3>serializeForm</h3><code>const json = Chooles.from.serializeForm(this.$form);</code><button class="mt-4 js-test__fromftofd">click to serialize to FormData</button><div class="result--fromftofd border-blue p-4"></div><h2>AbstractComponent</h2><h3>Simple example</h3><code>import Chooles from '@/Chooles';
+<br/>
+<br/>
+export default class Component extends Chooles.AbstractComponent {
+<br/>
+  &nbsp;constructor(globals) {
+<br/>
+    &nbsp;&nbsp;super(globals, { selector: 'js-component' });
+<br/>
+  &nbsp;}
+<br/>
+<br/>
+  &nbsp;onInit() {
+<br/>
+    &nbsp;&nbsp;this.$component.addEventListener('click', () => {
+<br/>
+      &nbsp;&nbsp;&nbsp;alert('I\'m a component'); // eslint-disable-line no-alert
+<br/>
+    &nbsp;&nbsp;});
+<br/>
+  &nbsp;}
+<br/>
+}</code><button class="mt-4 js-component">click to alert</button></main><!-- Google Analytics: change UA-XXXXX-X to be your site ID. --><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
